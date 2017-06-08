@@ -1,0 +1,51 @@
+{
+  "name": "kickass-crello",
+  "version": "1.0.0",
+  "description": "how i kickass crello :)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GagarinAP/kickass-crello.git"
+  },
+  "author": "GagarinAP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GagarinAP/kickass-crello/issues"
+  },
+  "homepage": "https://github.com/GagarinAP/kickass-crello#readme",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
+    "eslint-plugin-react": "^7.0.1",
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.4.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-sourcemaps": "^1.12.0",
+    "gulp-watch": "^4.3.11",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.10.5",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "serve-favicon": "^2.4.3",
+    "webpack": "^2.6.1",
+    "webpack-stream": "^3.2.0"
+  }
+}
