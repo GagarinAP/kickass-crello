@@ -1,21 +1,13 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import {Provider} from "react-redux"
+import store from "./store/index"
 
-export default class App extends React.Component {
-    constructor() {
-        super();
-    }
-
-    render() {
-        return(
-            <div className="container">
-                <h1>Hello world</h1>
-            </div>
-        );
-    }
-}
+import App from "./components/App"
 
 ReactDOM.render(
-    <App/>,
+    <Provider store={store}>
+        <App/>
+    </Provider>,
     document.getElementById("root")
 );
