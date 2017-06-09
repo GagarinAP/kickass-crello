@@ -6,11 +6,7 @@ import _ from "lodash"
 export function getTodos() {
     axios.get("/api/todos")
         .then(response => {
-            let newResponse = [];
-            _.map(response.data, (value) => {
-                newResponse.push(value.todo);
-            });
-            _getTodos(newResponse);
+            _getTodos(response.data);
         })
         .catch((error) => {
             return (error);
@@ -37,6 +33,23 @@ export function addTodo(todo) {
 export function _addTodo (data) {
     store.dispatch({
         type: ACTION_TYPES.ADD_TODO,
+        todo: data
+    });
+}
+
+export function deleteTodo(id) {
+    return axios.delete(`/api/todo/${id}`)
+        .then(response => {
+            _deleteTodo(response.data);
+        })
+        .catch((error) => {
+            return (error);
+        });
+}
+
+export function _deleteTodo (data) {
+    store.dispatch({
+        type: ACTION_TYPES.DELETE_TODO,
         todo: data
     });
 }

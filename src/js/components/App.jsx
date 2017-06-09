@@ -1,17 +1,21 @@
 import React from "react"
 import {connect} from "react-redux"
 import * as Action from "./../actions/index"
+import createFragment from "react-addons-create-fragment"
 import _ from "lodash"
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todo: '',
+            item: '',
+            todo: {},
             todos: []
         };
         this._valueFormTodo = this._valueFormTodo.bind(this);
         this._addTodo = this._addTodo.bind(this);
+        this._removeTodo = this._removeTodo.bind(this);
+        this.SwapperObject = this.SwapperObject.bind(this);
     }
 
     componentDidMount() {
@@ -28,7 +32,7 @@ class App extends React.Component {
 
     _valueFormTodo(event) {
         this.setState({
-            todo: event.target.value
+            item: event.target.value
         });
     }
 
@@ -36,11 +40,28 @@ class App extends React.Component {
         event.preventDefault();
         const newTodos = this.state.todos;
         newTodos.push(this.state.todo);
-        Action.addTodo(this.state.todo);
+        Action.addTodo(this.state.item);
         this.setState({
             todos: newTodos,
             todo: ''
         });
+        Action.getTodos();
+    }
+
+    _removeTodo(id) {
+        Action.deleteTodo(id);
+        Action.getTodos();
+    }
+
+    SwapperObject(data) {
+        let todo = createFragment({ todo: data.todo });
+        let id = createFragment({ id: data._id });
+        return <div>
+            {todo}
+            <a onClick={() => this._removeTodo(id)}>
+                <i className="fa fa-trash-o pull-right"/>
+            </a>
+        </div>;
     }
 
     render() {
@@ -54,7 +75,7 @@ class App extends React.Component {
                         <form onSubmit={this._addTodo}>
                             <div className="input-group">
                                 <input className="form-control input-lg input-todo"
-                                       value={this.state.todo}
+                                       value={this.state.item}
                                        onChange={this._valueFormTodo}
                                        type="text"
                                        placeholder="What needs to be done?"
@@ -62,7 +83,7 @@ class App extends React.Component {
                                 <div className="input-group-btn">
                                     <button className="btn btn-default btn-lg button-todo"
                                         type="submit"
-                                        disabled={!this.state.todo}
+                                        disabled={!this.state.item}
                                     >
                                         Add
                                     </button>
@@ -72,7 +93,10 @@ class App extends React.Component {
                     </div>
                     <div className="col-md-8 col-md-offset-2">
                         {_.map( this.state.todos, (value, key) => {
-                            return <div className="well well-todo" key={key}>{value}</div>
+                            return <div className="well well-todo"
+                                        key={key}>
+                                {this.SwapperObject(value)}
+                            </div>
                         })}
                     </div>
                 </div>
