@@ -10,8 +10,7 @@ const express    = require('express'),
 mongoose.connect(conf.url);
 
 const TodoSchema = new mongoose.Schema({
-    name: String,
-    updated_at: { type: Date, default: Date.now }
+    todo: String
 });
 
 const Todo = mongoose.model('Todo', TodoSchema);

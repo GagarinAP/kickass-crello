@@ -41,6 +41,7 @@
     "mongoose": "^4.10.5",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
+    "react-addons-create-fragment": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
