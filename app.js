@@ -8,6 +8,7 @@ const express    = require('express'),
       port       = process.env.PORT || '3000';
 
 mongoose.connect(conf.url);
+mongoose.Promise = global.Promise;
 
 const TodoSchema = new mongoose.Schema({
     todo: String,
@@ -57,6 +58,10 @@ app.delete('/api/todo/:id', function(req, res) {
         if (err) return err;
         res.json(todo);
     });
+});
+
+app.put('/api/todos', function(req, res) {
+    Todo.find().where({ active: false }).remove().exec();
 });
 
 app.listen(port, function(){

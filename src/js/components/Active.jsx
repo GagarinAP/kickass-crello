@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import _ from "lodash"
 import {withRouter, Link} from 'react-router-dom'
 
-class App extends React.Component {
+class Active extends React.Component {
     constructor(props) {
         super(props);
         this.state = Object.assign({}, this.props);
@@ -80,7 +80,7 @@ class App extends React.Component {
 
     onClickHandler(id) {
         this.setState({
-           active: !this.state.active
+            active: !this.state.active
         });
         this._updateTodo(id);
     }
@@ -103,8 +103,8 @@ class App extends React.Component {
                                 />
                                 <div className="input-group-btn">
                                     <button className="btn btn-default btn-lg button-todo"
-                                        type="submit"
-                                        disabled={!this.state.todo.todo}
+                                            type="submit"
+                                            disabled={!this.state.todo.todo}
                                     >
                                         Add
                                     </button>
@@ -113,11 +113,13 @@ class App extends React.Component {
                         </form>
                     </div>
                     <div className="col-md-8 col-md-offset-2">
-                        {_.map( this.state.todos, (value, key) => {
-                            return <div className="well well-todo"
-                                        key={key} style={{color: value.active ? 'black': 'grey'}}>
-                                {this.SwapperObject(value)}
-                            </div>
+                        {_.map( this.props.todos, (value, key) => {
+                            if(value.active) {
+                                return <div className="well well-todo"
+                                            key={key} style={{color: value.active ? 'black' : 'black'}}>
+                                    {this.SwapperObject(value)}
+                                </div>
+                            }
                         })}
                     </div>
                     <hr/>
@@ -125,9 +127,9 @@ class App extends React.Component {
                         <div className="well">
                             <div className="text-center">
                                 <o className="pull-left"><kbd>{this.props.todos.length}</kbd> item{this.props.todos.length > 1 ? '`s' : ''} left</o>
-                                <Link to="/"><strong>All </strong></Link>
-                                <Link to="/active"> Active </Link>
-                                <Link to="/completed">Completed</Link>
+                                <Link to="/">All </Link>
+                                <Link to="/active"><strong> Active</strong></Link>
+                                <Link to="/completed"> Completed</Link>
                                 <a className="pull-right" onClick={() => this._allDelete()}> Clear completed</a>
                             </div>
                         </div>
@@ -138,7 +140,11 @@ class App extends React.Component {
     }
 }
 
-App.defaultProps = {
+const mapStateToProps = (state) => ({
+    todos: state.todos.todos
+});
+
+Active.defaultProps = {
     item: '',
     todo: {
         todo: '',
@@ -148,7 +154,7 @@ App.defaultProps = {
     active: true
 };
 
-App.propTypes = {
+Active.propTypes = {
     todo: PropTypes.shape({
         active: PropTypes.bool,
         todo: PropTypes.string,
@@ -157,8 +163,4 @@ App.propTypes = {
     todos: PropTypes.array
 };
 
-const mapStateToProps = (state) => ({
-    todos: state.todos.todos
-});
-
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps)(Active));

@@ -29,6 +29,8 @@ export function todos(state = [], action) {
                 }
             });
             return newState3;
+        case ACTION_TYPES.DELETE_ALL_TODOS:
+            return Object.assign({}, state, {todos: action.todos});
         default: return state
     }
 }

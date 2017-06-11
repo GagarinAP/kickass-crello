@@ -70,3 +70,20 @@ export function _updateTodo (data) {
         todo: data
     });
 }
+
+export function deleteAllTodos() {
+    return axios.put("/api/todos")
+        .then(response => {
+            _deleteAllTodos(response.data);
+        })
+        .catch((error) => {
+            return (error);
+        });
+}
+
+export function _deleteAllTodos (data) {
+    store.dispatch({
+        type: ACTION_TYPES.DELETE_ALL_TODO,
+        todos: data
+    });
+}

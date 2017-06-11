@@ -5,16 +5,16 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import store from "./store/index"
 
 import App from "./components/App"
+import Active from "./components/Active"
+import Completed from "./components/Completed"
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
             <div>
-                <Switch>
-                    <Route exact path="/" component={App}/>
-                    <Route path="/active" component={App}/>
-                    <Route path="/completed" component={App}/>
-                </Switch>
+                <Route exact path="/" component={App}/>
+                <Route path="/active" component={Active}/>
+                <Route path="/completed" component={Completed}/>
             </div>
         </Router>
     </Provider>,
