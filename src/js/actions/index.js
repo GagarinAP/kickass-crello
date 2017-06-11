@@ -53,3 +53,20 @@ export function _deleteTodo (data) {
         todo: data
     });
 }
+
+export function updateTodo(id, active) {
+    return axios.put(`/api/todo/${id}`, {active: active})
+        .then(response => {
+            _deleteTodo(response.data);
+        })
+        .catch((error) => {
+            return (error);
+        });
+}
+
+export function _updateTodo (data) {
+    store.dispatch({
+        type: ACTION_TYPES.UPDATE_TODO,
+        todo: data
+    });
+}

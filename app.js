@@ -10,7 +10,11 @@ const express    = require('express'),
 mongoose.connect(conf.url);
 
 const TodoSchema = new mongoose.Schema({
-    todo: String
+    todo: String,
+    active: {
+        type: Boolean,
+        default: true
+    }
 });
 
 const Todo = mongoose.model('Todo', TodoSchema);
@@ -24,58 +28,34 @@ app.get('/', function(req,res){
     res.sendFile('index.html');
 });
 
-app.get('/api/todos', function(req, res, next) {
+app.get('/api/todos', function(req, res) {
     Todo.find(function (err, todos) {
-        if (err) return next(err);
+        if (err) return err;
         res.json(todos);
     });
 });
-app.post('/api/todo', function(req, res, next) {
+app.post('/api/todo', function(req, res) {
     Todo.create(req.body, function (err, todo) {
-        if (err) return next(err);
+        if (err) return err;
         res.json(todo);
     });
 });
-app.get('/api/todo/:id', function(req, res, next) {
+app.get('/api/todo/:id', function(req, res) {
     Todo.findById(req.params.id, function (err, todo) {
-        if (err) return next(err);
+        if (err) return err;
         res.json(todo);
     });
 });
-app.put('/api/todo/:id', function(req, res, next) {
+app.put('/api/todo/:id', function(req, res) {
     Todo.findByIdAndUpdate(req.params.id, req.body, function (err, todo) {
-        if (err) return next(err);
+        if (err) return err;
         res.json(todo);
     });
 });
-app.delete('/api/todo/:id', function(req, res, next) {
+app.delete('/api/todo/:id', function(req, res) {
     Todo.findByIdAndRemove(req.params.id, req.body, function (err, todo) {
-        if (err) return next(err);
+        if (err) return err;
         res.json(todo);
-    });
-});
-
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-app.use(function(err, req, res) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
     });
 });
 
