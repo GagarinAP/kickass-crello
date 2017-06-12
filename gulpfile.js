@@ -1,12 +1,12 @@
-var gulp            = require('gulp'),
-    sourcemaps      = require('gulp-sourcemaps'),
-    cleanCSS        = require('gulp-clean-css'),
-    concat          = require('gulp-concat'),
-    concatCss       = require('gulp-concat-css'),
-    watch           = require('gulp-watch'),
-    eslint          = require('gulp-eslint'),
-    webpackConf     = require('./webpack.config'),
-    webpack         = require('webpack-stream');
+var gulp        = require('gulp'),
+    sourcemaps  = require('gulp-sourcemaps'),
+    cleanCSS    = require('gulp-clean-css'),
+    concat      = require('gulp-concat'),
+    concatCss   = require('gulp-concat-css'),
+    watch       = require('gulp-watch'),
+    eslint      = require('gulp-eslint'),
+    webpackConf = require('./webpack.config'),
+    webpack     = require('webpack-stream');
 
 gulp.task('lint', function (cb) {
     return gulp.src('./src/js/**/*.{js,jsx}')

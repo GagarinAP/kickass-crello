@@ -72,7 +72,7 @@ export function _updateTodo (data) {
 }
 
 export function deleteAllTodos() {
-    return axios.put("/api/todos")
+    return axios.delete("/api/todos")
         .then(response => {
             _deleteAllTodos(response.data);
         })

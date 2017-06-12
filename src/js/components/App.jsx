@@ -47,7 +47,9 @@ class App extends React.Component {
         Action.addTodo(this.state.todo.todo);
         this.setState({
             todos: newTodos,
-            todo: {todo: ''}
+            todo: {
+                todo: ''
+            }
         });
         Action.getTodos();
     }
@@ -68,11 +70,11 @@ class App extends React.Component {
 
         return <div className="row">
             <div className="col-md-11" onClick={() => this.onClickHandler(id)}>
-                <h2>{todo}</h2><p>Active: {JSON.stringify(data.active)}</p>
+                <h2>{todo}</h2>
             </div>
             <div className="col-md-1">
                 <a onClick={() => this._removeTodo(id)}>
-                    <i className="fa fa-trash-o pull-right fafa-todo"/>
+                    <i className="fa fa-trash-o fa-2x pull-right fafa-todo"/>
                 </a>
             </div>
         </div>;
@@ -122,7 +124,7 @@ class App extends React.Component {
                     </div>
                     <hr/>
                     <div className="col-md-8 col-md-offset-2">
-                        <div className="well">
+                        <div className="well well-todo">
                             <div className="text-center">
                                 <o className="pull-left"><kbd>{this.props.todos.length}</kbd> item{this.props.todos.length > 1 ? '`s' : ''} left</o>
                                 <Link to="/"><strong>All </strong></Link>
