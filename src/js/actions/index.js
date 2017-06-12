@@ -1,7 +1,6 @@
 import axios from "axios"
 import {ACTION_TYPES} from "./../const/index"
 import store from "./../store/index"
-import _ from "lodash"
 
 export function getTodos() {
     axios.get("/api/todos")

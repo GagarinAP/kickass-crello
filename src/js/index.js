@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import {Provider} from "react-redux"
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import store from "./store/index"
 
 import App from "./components/App"
@@ -12,9 +12,18 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <div>
-                <Route exact path="/" component={App}/>
-                <Route path="/active" component={Active}/>
-                <Route path="/completed" component={Completed}/>
+                <Switch>
+                    <Route component={App}
+                        exact
+                        path="/"
+                    />
+                    <Route component={Active}
+                        path="/active"
+                    />
+                    <Route component={Completed}
+                        path="/completed"
+                    />
+                </Switch>
             </div>
         </Router>
     </Provider>,

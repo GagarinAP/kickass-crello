@@ -11,8 +11,16 @@
 .fafa-todo{
     padding: 13px 0px;
 }
-
 .h1, .h2, .h3, h1, h2, h3 {
     margin-top: 12px;
     margin-bottom: 10px;
+}
+.active{
+    color: red;
+}
+.item-todo-length{
+    padding: 5px 0px;
+}
+.btnr{
+    border-radius: 0px;
 }
